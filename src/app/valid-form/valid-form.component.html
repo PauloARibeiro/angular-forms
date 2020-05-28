@@ -1,0 +1,46 @@
+<h1>Valid Form</h1>
+
+<form #formElement="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+  Value: {{ form.value | json }}
+
+  <br /><br />
+
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" />
+    <mat-error *ngIf="email.invalid && email.touched">
+      Your email does not look right
+    </mat-error>
+  </mat-form-field>
+
+  <br /><br />
+
+  <mat-form-field>
+    <input matInput placeholder="Password" formControlName="password" />
+
+    <mat-error *ngIf="password.invalid && password.touched">
+      That password sucks...
+    </mat-error>
+
+    <mat-hint align="end">Must have one letter and one number</mat-hint>
+  </mat-form-field>
+
+  <br /><br />
+
+  <mat-form-field>
+    <input matInput placeholder="Age" [value]="0" formControlName="age" />
+
+    <mat-error *ngIf="age.errors?.min && age.touched"> {{ age.errors.min.actual }} is too young </mat-error>
+
+    <mat-error *ngIf="age.errors?.max && age.touched"> {{ age.errors.max.actual }} is too old </mat-error>
+  </mat-form-field>
+
+  <br /><br />
+
+  <mat-checkbox formControlName="agree" color="primary"> Are you sure?</mat-checkbox>
+
+  <br /><br />
+
+  <button mat-raised-button [disabled]="form.invalid" color="primary">
+    Submit
+  </button>
+</form>

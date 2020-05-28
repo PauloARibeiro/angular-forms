@@ -1,0 +1,11 @@
+<h1>Final Form</h1>
+
+Value: {{ parentForm.value | json }}
+
+<form class="container" [formGroup]="parentForm" (ngSubmit)="onSubmit()">
+  <app-basic-info [parentForm]="parentForm.controls?.basic"></app-basic-info>
+  <app-additional-info [parentForm]="parentForm.controls?.additional"></app-additional-info>
+  <button mat-raised-button [disabled]="parentForm.invalid" color="primary">
+    Submit
+  </button>
+</form>

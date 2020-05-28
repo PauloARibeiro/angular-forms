@@ -1,0 +1,31 @@
+<div class="container" [formGroup]="parentForm">
+  <mat-form-field>
+    <mat-label>Food</mat-label>
+    <mat-select formControlName="food">
+      <mat-option *ngFor="let food of foods" [value]="food.value">
+        {{ food.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br /><br />
+
+  <mat-form-field>
+    <mat-label>Food time</mat-label>
+    <mat-select formControlName="foodTime">
+      <mat-option *ngFor="let time of foodsTime" [value]="time.value">
+        {{ time.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br />
+  <br />
+
+  <mat-form-field>
+    <textarea matInput placeholder="Body" formControlName="body"></textarea>
+    <mat-error *ngIf="body.invalid && body.touched">
+      Body is required
+    </mat-error>
+  </mat-form-field>
+</div>
